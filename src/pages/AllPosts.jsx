@@ -76,7 +76,7 @@ function AllPosts() {
         <div className="flex flex-wrap">
           {visiblePosts.length > 0 ? (
             visiblePosts.map((post) => (
-              <div key={post.$id} className="p-2 w-1/2 lg:w-1/3">
+              <div key={post.$id} className="p-2 w-full sm:w-1/2 lg:w-1/3">
                 <PostCard {...post} />
               </div>
             ))

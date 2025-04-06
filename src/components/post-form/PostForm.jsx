@@ -103,64 +103,76 @@ export default function PostForm({ post }) {
     return (
         <div>
             {errorMessage && (
-            <div className="w-full p-3 mb-4 text-red-600 bg-red-100 border border-red-400 rounded-lg">
-                {errorMessage}
-            </div>
-        )}
-        
-        <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
-            <div className="w-2/3 px-2">
-                <Input
-                    label="Title :"
-                    placeholder="Title"
-                    className="mb-4"
-                    {...register("title", { required: true })}
-                />
-                <Input
-                    label="Slug :"
-                    placeholder="Slug"
-                    className="mb-4"
-                    {...register("slug", { required: true })}
-                    onInput={(e) => {
-                        setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true });
-                    }}
-                />
-                <RTE label="Content :" name="content" control={control} defaultValue={getValues("content")} />
-            </div>
-            <div className="w-1/3 px-2">
-                <Input
-                    label="(upto 1mb) Featured Image : "
-                    type="file"
-                    className="mb-4"
-                    accept="image/png, image/jpg, image/jpeg, image/gif"
-                    {...register("image")}
-                />
-                {post && (
-                    <div className="w-full mb-4">
-                        <img
-                            src={appwriteService.getFilePreview(post.featuredImage)}
-                            alt={post.title}
-                            className="rounded-lg"
-                        />
-                    </div>
-                )}
-                <Select
-                    options={["active", "inactive"]}
-                    label="Status"
-                    className="mb-4 mt-6 scale-y-105 border-gray-300 shadow-sm"
-                    {...register("status", { required: true })}
-                />
-                <Button
-                    type="submit"
-                    borderColor={post ? "border-green-500" : "border-blue-600"}
-                    textColor={post ? "text-green-500" : "text-blue-600"}
-                    hoverEffect={post ? "hover:bg-green-200" : "hover:bg-blue-200"}
-                    className="w-full mt-6"
-                >
-                    {post ? "Update" : "Submit"}
-                </Button>
-            </div>
-        </form>
+                <div className="w-full p-3 mb-4 text-red-600 bg-red-100 border border-red-400 rounded-lg">
+                    {errorMessage}
+                </div>
+            )}
+    
+            <form onSubmit={handleSubmit(submit)} className="flex flex-wrap -mx-2">
+                {/* Left Section */}
+                <div className="w-full md:w-2/3 px-2">
+                    <Input
+                        label="Title :"
+                        placeholder="Title"
+                        className="mb-4"
+                        {...register("title", { required: true })}
+                    />
+                    <Input
+                        label="Slug :"
+                        placeholder="Slug"
+                        className="mb-4"
+                        {...register("slug", { required: true })}
+                        onInput={(e) => {
+                            setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true });
+                        }}
+                    />
+                    <RTE
+                        label="Content :"
+                        name="content"
+                        control={control}
+                        defaultValue={getValues("content")}
+                    />
+                </div>
+    
+                {/* Right Section */}
+                <div className="w-full md:w-1/3 px-2 mt-6 md:mt-0">
+                    <Input
+                        label="(upto 1mb) Featured Image :"
+                        type="file"
+                        className="mb-4"
+                        accept="image/png, image/jpg, image/jpeg, image/gif"
+                        {...register("image")}
+                    />
+    
+                    {post && (
+                        <div className="w-full mb-4">
+                            <img
+                                src={appwriteService.getFilePreview(post.featuredImage)}
+                                alt={post.title}
+                                className="rounded-lg w-full object-cover"
+                            />
+                        </div>
+                    )}
+    
+                    <Select
+                        options={["active", "inactive"]}
+                        label="Status: "
+                        className="mb-4 md:mt-6 scale-y-105 border-gray-300 shadow-sm"
+                        {...register("status", { required: true })}
+                    />
+    
+                    <Button
+                        type="submit"
+                        borderColor={post ? "border-green-500" : "border-blue-600"}
+                        textColor={post ? "text-green-500" : "text-blue-600"}
+                        hoverEffect={post ? "hover:bg-green-200" : "hover:bg-blue-200"}
+                        className="w-full mt-6"
+                    >
+                        {post ? "Update" : "Submit"}
+                    </Button>
+                </div>
+            </form>
         </div>
     );
+    
 };

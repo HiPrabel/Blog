@@ -17,7 +17,7 @@ function Header() {
   ];
 
   return (
-    <header className="py-4 shadow-md bg-white rounded-b-xl z-50">
+    <header className="md:py-4 shadow-md bg-white rounded-b-xl z-50">
       <Container>
         <nav className="flex items-center justify-between relative">
           
@@ -60,7 +60,7 @@ function Header() {
 
           {/* Mobile Dropdown */}
           {menuOpen && (
-            <div className="absolute top-full left-0 w-full bg-white shadow-md rounded-b-xl md:hidden z-50">
+            <div className="absolute top-full left-0 w-full mt-2 bg-white shadow-md rounded-b-xl md:hidden z-50">
               <ul className="flex flex-col items-center py-4 gap-y-4">
                 {navItems.map((item) =>
                   item.active && (
