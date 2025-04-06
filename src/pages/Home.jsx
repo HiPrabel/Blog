@@ -12,17 +12,19 @@ function Home() {
     const loaderRef = useRef(null);
     const authStatus = useSelector((state) => state.auth.status);
 
-    const filteredPosts = posts.filter((post) =>
-        post.title.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-
-    // Fetch posts
+    // Fetch posts from Appwrite on mount
     useEffect(() => {
         appwriteService.getPosts().then((res) => {
             if (res) setPosts(res.documents);
         });
     }, []);
 
+    // Filter posts by search term
+    const filteredPosts = posts.filter((post) =>
+        post.title.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    // Infinite scroll to load more posts
     useEffect(() => {
         const observer = new IntersectionObserver(
             ([entry]) => {
@@ -33,45 +35,50 @@ function Home() {
             { threshold: 1 }
         );
 
-        if (loaderRef.current) observer.observe(loaderRef.current);
+        const loader = loaderRef.current;
+        if (loader) observer.observe(loader);
+
         return () => {
-            if (loaderRef.current) observer.unobserve(loaderRef.current);
+            if (loader) observer.unobserve(loader);
         };
     }, [filteredPosts.length]);
 
-
+    // If user is not authenticated, show call-to-action section
     if (!authStatus) {
         return (
-            <div className="w-full py-16 bg-gradient-to-b from-gray-100 to-gray-200 rounded-lg shadow-lg">
-                <Container>
-                    <div className="flex flex-col items-center justify-center">
-                        <motion.h1
-                            initial={{ opacity: 0, y: -10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.5 }}
-                            className="text-4xl font-extrabold text-gray-900 hover:text-gray-600 transition-all duration-200"
-                        >
-                            Login to Read Amazing Posts
-                        </motion.h1>
-                        <p className="text-lg text-gray-600 mt-2">
-                            Discover, read, and share interesting stories with the community.
-                        </p>
-                        <Link to="/login">
-                            <motion.button
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                                className="mt-6 px-6 py-3 bg-blue-600 text-white font-semibold rounded-full shadow-lg 
-                                    hover:bg-blue-700 hover:shadow-xl transition-all duration-300"
-                            >
-                                Get Started for Free
-                            </motion.button>
-                        </Link>
-                    </div>
-                </Container>
+            <div className="w-full mt-4 py-16 bg-gradient-to-b from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 rounded-lg shadow-lg">
+              <Container>
+                <div className="flex flex-col items-center justify-center text-center">
+                  <motion.h1
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="text-4xl font-extrabold text-gray-900 dark:text-white hover:text-gray-600 dark:hover:text-gray-300 transition-all duration-200"
+                  >
+                    Login to Read Amazing Posts
+                  </motion.h1>
+                  <p className="text-lg text-gray-600 dark:text-gray-400 mt-2">
+                    Discover, read, and share interesting stories with the community.
+                  </p>
+                  <Link to="/login">
+                    <motion.button
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="mt-6 px-6 py-3 bg-blue-600 dark:bg-blue-500 text-white font-semibold rounded-full shadow-lg 
+                        hover:bg-blue-700 dark:hover:bg-blue-600 hover:shadow-xl transition-all duration-300"
+                    >
+                      Get Started for Free
+                    </motion.button>
+                  </Link>
+                </div>
+              </Container>
             </div>
-        );
+          );
+          
+          
     }
 
+    // Main home content if user is authenticated
     return (
         <div className="w-full py-8">
             <Container>
@@ -98,14 +105,14 @@ function Home() {
                     ))}
                 </div>
 
+                {filteredPosts.length === 0 && (
+                    <p className="text-center text-gray-500 mt-4">No matching posts found</p>
+                )}
+
                 {visibleCount < filteredPosts.length && (
                     <div ref={loaderRef} className="h-10 mt-4 flex justify-center items-center">
                         <span className="text-sm text-gray-400">Loading more posts...</span>
                     </div>
-                )}
-
-                {filteredPosts.length === 0 && (
-                    <p className="text-center text-gray-500 mt-4">No matching posts found</p>
                 )}
             </Container>
         </div>

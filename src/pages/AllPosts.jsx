@@ -50,19 +50,19 @@ function AllPosts() {
   
 
   return (
-    <div className="w-full py-8">
+    <div className="w-full py-8 bg-white dark:bg-gray-900 min-h-screen">
       <Container>
         {/* Search and Filter */}
         <div className="flex flex-wrap justify-center items-center gap-4 my-4">
           <input
             type="text"
             placeholder="Search posts..."
-            className="w-2/3 md:w-1/2 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-300"
+            className="w-2/3 md:w-1/2 px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-lg shadow-sm focus:ring focus:ring-blue-300 dark:focus:ring-blue-500"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
           <select
-            className="px-4 py-2 border border-gray-300 rounded-lg shadow-sm"
+            className="px-4 py-2 border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded-lg shadow-sm"
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
           >
@@ -71,7 +71,7 @@ function AllPosts() {
             <option value="inactive">Inactive Posts</option>
           </select>
         </div>
-
+  
         {/* Posts */}
         <div className="flex flex-wrap">
           {visiblePosts.length > 0 ? (
@@ -81,15 +81,18 @@ function AllPosts() {
               </div>
             ))
           ) : (
-            <p className="text-center text-gray-500 w-full">No matching posts found</p>
+            <p className="text-center text-gray-500 dark:text-gray-400 w-full">
+              No matching posts found. Create a Post
+            </p>
           )}
         </div>
-
+  
         {/* Lazy Loader Trigger */}
         <div ref={loaderRef} className="h-10" />
       </Container>
     </div>
   );
+  
 }
 
 export default AllPosts;

@@ -103,7 +103,7 @@ export default function PostForm({ post }) {
     return (
         <div>
             {errorMessage && (
-                <div className="w-full p-3 mb-4 text-red-600 bg-red-100 border border-red-400 rounded-lg">
+                <div className="w-full p-3 mb-4 text-red-600 bg-red-100 border border-red-400 rounded-lg dark:bg-red-950 dark:text-red-400 dark:border-red-600">
                     {errorMessage}
                 </div>
             )}
@@ -114,13 +114,13 @@ export default function PostForm({ post }) {
                     <Input
                         label="Title :"
                         placeholder="Title"
-                        className="mb-4"
+                        className="mb-4 dark:bg-gray-800 dark:border-gray-600 dark:text-white"
                         {...register("title", { required: true })}
                     />
                     <Input
                         label="Slug :"
                         placeholder="Slug"
-                        className="mb-4"
+                        className="mb-4 dark:bg-gray-800 dark:border-gray-600 dark:text-white"
                         {...register("slug", { required: true })}
                         onInput={(e) => {
                             setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true });
@@ -139,7 +139,7 @@ export default function PostForm({ post }) {
                     <Input
                         label="(upto 1mb) Featured Image :"
                         type="file"
-                        className="mb-4"
+                        className="mb-4 dark:bg-gray-800 dark:border-gray-600 dark:text-white"
                         accept="image/png, image/jpg, image/jpeg, image/gif"
                         {...register("image")}
                     />
@@ -149,7 +149,7 @@ export default function PostForm({ post }) {
                             <img
                                 src={appwriteService.getFilePreview(post.featuredImage)}
                                 alt={post.title}
-                                className="rounded-lg w-full object-cover"
+                                className="rounded-lg w-full object-cover border dark:border-gray-700"
                             />
                         </div>
                     )}
@@ -157,15 +157,15 @@ export default function PostForm({ post }) {
                     <Select
                         options={["active", "inactive"]}
                         label="Status: "
-                        className="mb-4 scale-y-105 border-gray-300"
+                        className="mb-4 scale-y-105 border-gray-300 dark:border-gray-600 dark:bg-gray-900 dark:text-white"
                         {...register("status", { required: true })}
                     />
     
                     <Button
                         type="submit"
-                        borderColor={post ? "border-green-500" : "border-blue-600"}
-                        textColor={post ? "text-green-500" : "text-blue-600"}
-                        hoverEffect={post ? "hover:bg-green-200" : "hover:bg-blue-200"}
+                        borderColor={post ? "border-green-500 dark:border-green-400" : "border-blue-600 dark:border-blue-400"}
+                        textColor={post ? "text-green-500 dark:text-green-400" : "text-blue-600 dark:text-blue-400"}
+                        hoverEffect={post ? "hover:bg-green-200 dark:hover:bg-green-900" : "hover:bg-blue-200 dark:hover:bg-blue-900"}
                         className="w-full mt-6"
                     >
                         {post ? "Update" : "Submit"}
@@ -174,5 +174,6 @@ export default function PostForm({ post }) {
             </form>
         </div>
     );
+    
     
 };

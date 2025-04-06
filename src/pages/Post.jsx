@@ -45,23 +45,24 @@ export default function Post() {
     };
 
     return post ? (
-        <div className="py-8 bg-gray-50 flex justify-center">
+        <div className="py-8 bg-gray-50 dark:bg-gray-900 flex justify-center">
             <Container>
                 <div className="w-full flex flex-col items-center">
                     {isAuthor ? (
-                        <div className="w-full max-w-3xl flex justify-end p-2 bg-white shadow-md rounded-t-lg">
+                        <div className="w-full max-w-3xl flex justify-end p-2 bg-white dark:bg-gray-800 shadow-md rounded-t-lg">
                             <Link to={`/edit-post/${post.$id}`}>
                                 <Button 
                                     borderColor="border-hidden" 
-                                    textColor="text-blue-600 text-lg" 
-                                    hoverEffect="hover:bg-blue-600 hover:text-white">
+                                    textColor="text-blue-600 dark:text-blue-400 text-lg" 
+                                    hoverEffect="hover:bg-blue-600 hover:text-white dark:hover:bg-blue-500 dark:hover:text-white"
+                                >
                                     Edit
                                 </Button>
                             </Link>
                             <Button
                                 borderColor="border-hidden"
-                                textColor="text-red-600 text-lg"
-                                hoverEffect="hover:bg-red-600 hover:text-white"
+                                textColor="text-red-600 dark:text-red-400 text-lg"
+                                hoverEffect="hover:bg-red-600 hover:text-white dark:hover:bg-red-500 dark:hover:text-white"
                                 onClick={deletePost}
                                 className="ml-2"
                             >
@@ -69,15 +70,15 @@ export default function Post() {
                             </Button>
                         </div>
                     ) : (
-                        <div className="w-full max-w-3xl flex justify-end p-2 bg-white shadow-md rounded-t-lg">
-                            <div className="text-gray-700 text-lg font-semibold">
+                        <div className="w-full max-w-3xl flex justify-end p-2 bg-white dark:bg-gray-800 shadow-md rounded-t-lg">
+                            <div className="text-gray-700 dark:text-gray-300 text-lg font-semibold">
                                 Author: {post.author || "Loading..."}
                             </div>
                         </div>
                     )}
-                    
-                    {/* Post Image Section with Fallback */}
-                    <div className="relative w-full max-w-3xl bg-white shadow-xl rounded-lg overflow-hidden">
+    
+                    {/* Image Section */}
+                    <div className="relative w-full max-w-3xl bg-white dark:bg-gray-800 shadow-xl rounded-lg overflow-hidden">
                         <div className="absolute top-2 left-2 bg-black/60 text-white text-sm px-4 py-1 rounded-md backdrop-blur-md">
                             {formatDate(post.$updatedAt)}
                         </div>
@@ -89,23 +90,32 @@ export default function Post() {
                                 className="w-full h-auto max-h-[500px] object-cover"
                             />
                         ) : (
-                            <div className="flex items-center justify-center w-full h-[300px] bg-gradient-to-r from-gray-300 to-gray-400 text-gray-600">
+                            <div className="flex items-center justify-center w-full h-[300px] bg-gradient-to-r from-gray-300 to-gray-400 dark:from-gray-700 dark:to-gray-600 text-gray-600 dark:text-gray-400">
                                 <FaRegImage size={60} className="opacity-50" />
                             </div>
                         )}
                     </div>
     
+                    {/* Title */}
                     <div className="w-full max-w-3xl text-center mt-6">
-                        <h1 className="text-2xl font-bold">{post.title}</h1>
+                        <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
+                            {post.title}
+                        </h1>
                     </div>
     
-                    <div className="w-full max-w-3xl mt-4 text-xl text-gray-800 leading-relaxed">
+                    {/* Content */}
+                    <div className="w-full max-w-3xl mt-4 text-xl text-gray-800 dark:text-gray-300 leading-relaxed">
                         {parse(post.content)}
                     </div>
                 </div>
             </Container>
         </div>
-    ) : null;
+    ) : (
+        <div className="min-h-[50vh] flex items-center justify-center text-gray-500 dark:text-gray-400 text-xl">
+            Loading post...
+        </div>
+    );
+    
     
     
 }
