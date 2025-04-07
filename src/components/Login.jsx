@@ -98,6 +98,14 @@ function Login() {
                         {errors.password && (
                             <p className="text-sm text-red-500 mt-1">{errors.password.message}</p>
                         )}
+                        <div className="text-right mt-1">
+                            <Link
+                                to="/forgot-password"
+                                className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
+                            >
+                                Forgot Password?
+                            </Link>
+                        </div>
                     </div>
 
                     <Button

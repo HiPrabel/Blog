@@ -5,6 +5,7 @@ const conf = {
   appwriteCollectionId: String(import.meta.env.VITE_APPWRITE_COLLECTION_ID),
   appwriteBucketId: String(import.meta.env.VITE_APPWRITE_BUCKET_ID),
   tinymceApi: String(import.meta.env.VITE_TINYMCE_API),
+  resetRedirectUrl: String(import.meta.env.VITE_RESET_PASSWORD_REDIRECT_URL),
 };
 
 export default conf;

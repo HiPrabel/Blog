@@ -14,6 +14,8 @@ import AuthLayout from "./AuthLayout";
 import Input from "./Input";
 import HeroSection from "./HeroSection";
 import PostCardFallback from "./PostCardFallback";
+import ForgotPassword from "./ForgotPassword";
+import ResetPassword from "./ResetPassword";
 
 export {
   Header,
@@ -32,4 +34,6 @@ export {
   Select,
   HeroSection,
   PostCardFallback,
+  ForgotPassword,
+  ResetPassword,
 };

@@ -14,6 +14,9 @@ const AllPosts = lazy(() => import('./pages/AllPosts'));
 const AddPost = lazy(() => import('./pages/AddPost'));
 const EditPost = lazy(() => import('./pages/EditPost'));
 const Post = lazy(() => import('./pages/Post'));
+const ForgotPassword = lazy(() => import('./pages/ForgotPassword.jsx'))
+const ResetPassword = lazy(() => import('./pages/ResetPassword.jsx'))
+
 
 // Fallback loader
 const Loader = () => (
@@ -89,6 +92,22 @@ const router = createBrowserRouter([
           </Suspense>
         ),
       },
+      {
+        path: '/forgot-password',
+        element: (
+          <Suspense fallback={<Loader />}>
+            <ForgotPassword />
+          </Suspense>
+        )
+      },
+      {
+        path: '/reset-password',
+        element: (
+          <Suspense fallback={<Loader />}>
+            <ResetPassword />
+          </Suspense>
+        )
+      }
     ],
   },
 ]);
