@@ -49,7 +49,7 @@ export default function Post() {
             <Container>
                 <div className="w-full flex flex-col items-center">
                     {isAuthor ? (
-                        <div className="w-full max-w-3xl flex justify-end p-2 bg-white dark:bg-gray-800 shadow-md rounded-t-lg">
+                        <div className="w-full max-w-3xl flex justify-end p-2 bg-white dark:bg-gray-900 shadow-md rounded-t-lg">
                             <Link to={`/edit-post/${post.$id}`}>
                                 <Button 
                                     borderColor="border-hidden" 
@@ -70,7 +70,7 @@ export default function Post() {
                             </Button>
                         </div>
                     ) : (
-                        <div className="w-full max-w-3xl flex justify-end p-2 bg-white dark:bg-gray-800 shadow-md rounded-t-lg">
+                        <div className="w-full max-w-3xl flex justify-end p-2 bg-white dark:bg-gray-900 shadow-md rounded-t-lg">
                             <div className="text-gray-700 dark:text-gray-300 text-lg font-semibold">
                                 Author: {post.author || "Loading..."}
                             </div>
