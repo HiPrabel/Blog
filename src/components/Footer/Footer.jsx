@@ -43,7 +43,8 @@ function Footer() {
                         </h3>
                         <ul className="space-y-2">
                             <li>
-                                <Link to="https://www.linkedin.com/in/prabel-pandey" className="text-blue-400 hover:underline">
+                                <Link to="https://www.linkedin.com/in/prabel-pandey" target="_blank"
+                                rel="noopener noreferrer" className="text-blue-400 hover:underline">
                                     LinkedIn
                                 </Link>
                             </li>
@@ -55,13 +56,16 @@ function Footer() {
                         </ul>
 
                         <div className="flex space-x-4 mt-4 justify-center md:justify-start">
-                            <a href="https://github.com/HiPrabel" className="text-gray-300 hover:text-white" aria-label="GitHub">
+                            <a href="https://github.com/HiPrabel" target="_blank"
+                            rel="noopener noreferrer" className="text-gray-300 hover:text-white" aria-label="GitHub">
                                 <FaGithub size={24} />
                             </a>
-                            <a href="https://www.linkedin.com/in/prabel-pandey" className="text-gray-300 hover:text-white" aria-label="LinkedIn">
+                            <a href="https://www.linkedin.com/in/prabel-pandey" target="_blank"
+                            rel="noopener noreferrer" className="text-gray-300 hover:text-white" aria-label="LinkedIn">
                                 <FaLinkedin size={24} />
                             </a>
-                            <a href="https://x.com/Prabel397x" className="text-gray-300 hover:text-white" aria-label="X (Twitter)">
+                            <a href="https://x.com/Prabel397x" target="_blank"
+                            rel="noopener noreferrer" className="text-gray-300 hover:text-white" aria-label="X (Twitter)">
                                 <FaXTwitter size={24} />
                             </a>
                         </div>
@@ -71,11 +75,13 @@ function Footer() {
                     <div>
                         <h3 className="mb-4 text-sm font-semibold uppercase text-gray-400">Get the App</h3>
                         <div className="flex flex-col items-center md:items-start space-y-2">
-                            <a href="https://play.google.com/store/apps" className="flex items-center justify-center space-x-2 bg-black text-white px-3 py-2 rounded-lg hover:bg-gray-800 w-40 min-h-[42px]">
+                            <a href="https://play.google.com/store/apps" target="_blank"
+                            rel="noopener noreferrer" className="flex items-center justify-center space-x-2 bg-black text-white px-3 py-2 rounded-lg hover:bg-gray-800 w-40 min-h-[42px]">
                                 <FaGooglePlay size={20} />
                                 <span>Google Play</span>
                             </a>
-                            <a href="https://www.apple.com/app-store/" className="flex items-center justify-center space-x-2 bg-black text-white px-3 py-2 rounded-lg hover:bg-gray-800 w-40 min-h-[42px]">
+                            <a href="https://www.apple.com/app-store/" target="_blank"
+                            rel="noopener noreferrer" className="flex items-center justify-center space-x-2 bg-black text-white px-3 py-2 rounded-lg hover:bg-gray-800 w-40 min-h-[42px]">
                                 <FaApple size={20} />
                                 <span>App Store</span>
                             </a>

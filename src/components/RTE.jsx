@@ -54,7 +54,7 @@ const RichTextEditor = ({ name, control, label, defaultValue }) => {
                 "fullscreen", "insertdatetime", "media", "table", "help", "wordcount"
               ],
               toolbar:
-                "undo redo | blocks | formatselect | bold italic underline | alignleft aligncenter alignright alignjustify | outdent indent | removeformat | code | help",
+                "undo redo | blocks | formatselect | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help",
               content_style: `
                 body {
                   font-family: Helvetica, Arial, sans-serif;

@@ -86,6 +86,7 @@ function Home() {
 
                 <div className="flex justify-center my-4">
                     <input
+                        id="search"
                         type="text"
                         placeholder="Search posts..."
                         className="w-2/3 md:w-1/2 px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring focus:ring-blue-300"
