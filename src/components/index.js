@@ -16,6 +16,7 @@ import HeroSection from "./HeroSection";
 import PostCardFallback from "./PostCardFallback";
 import ForgotPassword from "./ForgotPassword";
 import ResetPassword from "./ResetPassword";
+import ScrollToTopButton from "./ScrollToTopButton";
 
 export {
   Header,
@@ -36,4 +37,5 @@ export {
   PostCardFallback,
   ForgotPassword,
   ResetPassword,
+  ScrollToTopButton,
 };
