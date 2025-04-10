@@ -35,7 +35,7 @@ function PostCard({ $id, title, featuredImage, status }) {
             />
           </div>
         ) : (
-          <div className="flex items-center justify-center w-full h-56 bg-gradient-to-r from-gray-300 to-gray-400 dark:from-gray-600 dark:to-gray-700 text-gray-600 dark:text-gray-300">
+          <div className="flex items-center rounded-t-lg justify-center w-full h-56 bg-gradient-to-r from-gray-300 to-gray-400 dark:from-gray-600 dark:to-gray-700 text-gray-600 dark:text-gray-300">
             <FaRegImage size={50} className="opacity-50" />
           </div>
         )}
