@@ -12,7 +12,7 @@ function PostCard({ $id, title, featuredImage, status }) {
         className={`w-full relative rounded-lg shadow-lg transition-all duration-300 transform
           ${
             isActive
-              ? "bg-white hover:shadow-2xl hover:-translate-y-0.5 dark:bg-gray-800 dark:hover:shadow-xl"
+              ? "bg-white hover:shadow-2xl hover:-translate-y-1 hover:scale-96 dark:bg-gray-800 dark:hover:shadow-xl"
               : "bg-orange-200 hover:bg-orange-300 dark:bg-orange-700 dark:hover:bg-orange-600"
           }`}
       >
