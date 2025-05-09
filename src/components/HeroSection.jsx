@@ -29,13 +29,13 @@ const HeroSection = () => {
                 Join a community of passionate writers and readers!
             </motion.p>
 
-            {/* Button */}
-            <Link to="/add-post">
-                <motion.button 
-                    whileHover={{ scale: 1.05 }} 
+            <Link to="/login">
+                <motion.button
+                    whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="mt-6 px-6 py-3 bg-blue-600 text-white font-semibold rounded-full shadow-lg hover:bg-blue-700 hover:shadow-xl transition-all duration-300 relative z-10 dark:bg-blue-500 dark:hover:bg-blue-600">
-                    Create Post
+                    className="mt-6 px-6 py-3 bg-blue-600 text-white font-semibold rounded-full shadow-lg hover:bg-blue-700 hover:shadow-xl transition-all duration-300 relative z-10 dark:bg-blue-500 dark:hover:bg-blue-600"
+                >
+                    Get Started 
                 </motion.button>
             </Link>
         </section>
