@@ -1,14 +1,12 @@
 import React, { useEffect, useState, useRef } from "react";
 import appwriteService from "../appwrite/config";
 import { Container, PostCard, HeroSection } from "../components";
-import { useSelector } from "react-redux";
 
 function Home() {
     const [posts, setPosts] = useState([]);
     const [visibleCount, setVisibleCount] = useState(6);
     const [searchTerm, setSearchTerm] = useState("");
     const loaderRef = useRef(null);
-    const authStatus = useSelector((state) => state.auth.status);
 
     // Fetch posts from Appwrite on mount
     useEffect(() => {

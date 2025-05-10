@@ -1,7 +1,10 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { useSelector } from "react-redux";
 
 const HeroSection = () => {
+    const authStatus = useSelector((state) => state.auth.status);
+
     return (
         <section className="w-full max-w-7xl mx-auto mb-4 h-auto sm:h-[40vh] flex flex-col justify-center items-center text-center bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white rounded-lg shadow-md p-6 relative overflow-hidden">
             
@@ -29,15 +32,28 @@ const HeroSection = () => {
                 Join a community of passionate writers and readers!
             </motion.p>
 
-            <Link to="/login">
-                <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="mt-6 px-6 py-3 bg-blue-600 text-white font-semibold rounded-full shadow-lg hover:bg-blue-700 hover:shadow-xl transition-all duration-300 relative z-10 dark:bg-blue-500 dark:hover:bg-blue-600"
-                >
-                    Get Started 
-                </motion.button>
-            </Link>
+            {authStatus ? (
+                <Link to="/add-post">
+                    <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="mt-6 px-6 py-3 bg-blue-600 text-white font-semibold rounded-full shadow-lg hover:bg-blue-700 hover:shadow-xl transition-all duration-300 relative z-10 dark:bg-blue-500 dark:hover:bg-blue-600"
+                    >
+                        Create a Post 
+                    </motion.button>
+                </Link>
+            ) : (
+                <Link to="/login">
+                    <motion.button
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        className="mt-6 px-6 py-3 bg-blue-600 text-white font-semibold rounded-full shadow-lg hover:bg-blue-700 hover:shadow-xl transition-all duration-300 relative z-10 dark:bg-blue-500 dark:hover:bg-blue-600"
+                    >
+                        Get Started 
+                    </motion.button>
+                </Link>
+            )}
+
         </section>
     );
 };
