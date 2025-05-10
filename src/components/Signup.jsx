@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import authService from "../appwrite/auth.js";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../store/authSlice.js";
@@ -13,6 +13,19 @@ function Signup() {
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
+  const [captchaQuestion, setCaptchaQuestion] = useState({});
+  const [captchaAnswer, setCaptchaAnswer] = useState("");
+  const [captchaError, setCaptchaError] = useState("");
+  
+  const generateCaptcha = () => {
+      const num1 = Math.floor(Math.random() * 10 + 1);
+      const num2 = Math.floor(Math.random() * 10);
+      setCaptchaQuestion({ num1, num2, answer: num1 + num2 });
+  };
+
+  useEffect(() => {
+      generateCaptcha();
+  }, []);
 
   const {
     register,
@@ -22,7 +35,15 @@ function Signup() {
 
   const create = async (data) => {
     setError("");
+    setCaptchaError("");
+
+    if (parseInt(captchaAnswer) !== captchaQuestion.answer) {
+      setCaptchaError("Captcha answer is incorrect.");
+      generateCaptcha(); // regenerate on failure
+      return;
+    }
     setLoading(true);
+
     try {
       const account = await authService.createAccount(data);
       if (account) {
@@ -134,6 +155,23 @@ function Signup() {
             )}
           </div>
   
+          <div>
+            <label className="block text-gray-700 dark:text-gray-300 font-medium mb-1">
+              What is {captchaQuestion.num1} + {captchaQuestion.num2}?
+            </label>
+            <Input
+              type="text"
+              placeholder="Enter your answer"
+              value={captchaAnswer}
+              onChange={(e) => setCaptchaAnswer(e.target.value)}
+              className="border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+            />
+            
+            {captchaError && (
+              <p className="text-sm text-red-500 mt-1">{captchaError}</p>
+            )}
+          </div>
+          
           <Button
             type="submit"
             disabled={loading}

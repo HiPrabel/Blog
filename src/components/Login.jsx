@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { login as authLogin } from "../store/authSlice";
 import { Button, Input, Logo } from "./index";
@@ -13,9 +13,30 @@ function Login() {
     const { register, handleSubmit, formState: { errors } } = useForm();
     const [error, setError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+    const [captchaQuestion, setCaptchaQuestion] = useState({});
+    const [captchaAnswer, setCaptchaAnswer] = useState("");
+    const [captchaError, setCaptchaError] = useState("");
+
+    const generateCaptcha = () => {
+        const num1 = Math.floor(Math.random() * 10 + 1);
+        const num2 = Math.floor(Math.random() * 10);
+        setCaptchaQuestion({ num1, num2, answer: num1 + num2 });
+    };
+
+    useEffect(() => {
+        generateCaptcha();
+    }, []);
 
     const login = async (data) => {
         setError("");
+        setCaptchaError("");
+
+        if (parseInt(captchaAnswer) !== captchaQuestion.answer) {
+            setCaptchaError("Captcha answer is incorrect.");
+            generateCaptcha(); // regenerate on failure
+            return;
+        }
+
         try {
             const session = await authService.login(data);
             if (!session) throw new Error("Login failed. Try again.");
@@ -32,7 +53,7 @@ function Login() {
 
     return (
         <div className="flex items-center justify-center min-h-[70vh] bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
-            <div className="mx-auto w-full max-w-xl bg-white dark:bg-gray-800 shadow-lg rounded-xl p-10 border border-gray-200 dark:border-gray-700">
+            <div className="mx-auto w-full max-w-xl bg-white dark:bg-gray-800 shadow-lg rounded-xl p-8 border border-gray-200 dark:border-gray-700">
                 
                 <div className="mb-4 flex justify-center">
                     <span className="inline-block w-full max-w-[100px]">
@@ -107,6 +128,23 @@ function Login() {
                             </Link>
                         </div>
                     </div>
+
+                    <div>
+                        <label className="block text-gray-700 dark:text-gray-300 font-medium mb-1">
+                            What is {captchaQuestion.num1} + {captchaQuestion.num2}?
+                        </label>
+                        <Input
+                            type="text"
+                            placeholder="Enter your answer"
+                            value={captchaAnswer}
+                            onChange={(e) => setCaptchaAnswer(e.target.value)}
+                            className="border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-100"
+                        />
+                        {captchaError && (
+                            <p className="text-sm text-red-500 mt-1">{captchaError}</p>
+                        )}
+                    </div>
+
 
                     <Button
                         type="submit"
