@@ -9,7 +9,7 @@ function AllPosts() {
   const [statusFilter, setStatusFilter] = useState("all");
   const [visibleCount, setVisibleCount] = useState(6);
   const loaderRef = useRef(null);
-  const userData = useSelector((state) => state.auth.userData?.userData);
+  const userData = useSelector((state) => state.auth.userData);
 
   useEffect(() => {
     // console.log("userData: ", userData);

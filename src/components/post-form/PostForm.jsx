@@ -17,7 +17,7 @@ export default function PostForm({ post }) {
     });
 
     const navigate = useNavigate();
-    const userData = useSelector((state) => state.auth.userData?.userData);
+    const userData = useSelector((state) => state.auth.userData);
     const [errorMessage, setErrorMessage] = useState("");
 
     const submit = useCallback(async (data) => {
