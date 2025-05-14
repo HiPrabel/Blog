@@ -46,10 +46,6 @@ A feature-rich, full-stack blog platform built with modern web technologies — 
 | Backend     | Appwrite (Cloud-hosted)       |
 | Deployment  | Vercel                        |
 
-## Performance - Light House Report
-
-![LightHouse Report](https://github.com/user-attachments/assets/22754b99-308c-4757-86f5-2a2ae1ffbf67)
-
 ## 📂 Project Structure
 
 ```
