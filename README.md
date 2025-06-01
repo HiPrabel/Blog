@@ -70,7 +70,7 @@ A feature-rich, full-stack blog platform built with modern web technologies — 
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/your-username/blog-app.git
+   git clone https://github.com/HiPrabel/Blog.git
    ```
 2. Navigate into the project directory:
    ```sh
